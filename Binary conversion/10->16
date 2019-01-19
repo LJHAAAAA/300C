@@ -1,0 +1,8 @@
+#include<stdio.h>
+int main(){
+  int i;
+  printf("please input decimalism number:\n");
+  scanf("%d",&i);
+  printf("the hex number is %x",i);   //%x代表以16进制的形式输出,可以直接完成从10进制到16进制的转换
+  return 0;
+}
