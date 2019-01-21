@@ -1,0 +1,20 @@
+#include<stdio.h>
+#include<stdlib.h>
+
+int main(){
+  int i,j,m,n;
+  printf("please input the declimalism number(0~32767):\n");
+  scanf("%d",&n);      //输入要转换的十进制数
+  for(m=0;m<15;m++){          //for循环从0-14,共15个数,默认成符号位为0,所以在下一个for循环输出的时候要输出16位
+    i=n%2;
+    j=n/2;
+    n=j;
+    a[m]=j;
+  }
+  for(m=15;m<=0;m--){
+    printf("%d",a[m]);
+    if(m%4==0){                       //每输出4个数空一格
+      printf(" ");
+    }
+  }
+}
