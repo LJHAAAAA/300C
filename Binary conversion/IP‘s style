@@ -1,0 +1,51 @@
+要求:任意输入32位的二进制数,编程实现将该二进制数转换成IP地址的形式,如：
+输入：11111111111111111111111100000000(32位)
+输出: 255.255.255.0
+
+#include<stdio.h>
+#include<stdlib.h>
+#include<string.h>
+
+int transformation(int x,int n){       //x表示当前的进制,n表示要转换的数的第几位
+  if(n==0){
+    return 1;
+  }
+  else{
+    return x*transformation(x,n-1);          //使用递归逐位转换为十进制
+  }
+}
+
+int main(){
+  int i;
+  char input[33];
+  int ip[4]={0};
+  printf("please input the IP:\n");
+  gets_s(input);       //gets和scanf相似,但gets专门接受输入的字符串数组,接受的参数可以是字符数组名、字符指针或字符数组元素的地址
+  for (i = 0;i < 8;i++) {
+		if (input[i]=='1') {
+			ip[0]+=transformation(2,7-i);
+		}
+	}
+	for (i = 8;i < 16;i++) {
+		if (input[i]=='1') {
+			ip[1] += transformation(2, 15 - i);
+		}
+	}
+	for (i = 16;i < 24;i++) {
+		if (input[i]=='1') {
+			ip[2] += transformation(2,23-i);
+		}
+	}
+	for (i = 24;i < 32;i++) {
+		if (input[i] == '1') {
+			ip[3] += transformation(2,31-i);
+		}
+		if (input[i]=='\0') {
+			break;
+		}
+	}
+	printf("the result is:%d,%d,%d,%d",ip[0],ip[1],ip[2],ip[3]);
+	system("pause");
+	return 0;
+}
+}
